@@ -1,7 +1,7 @@
 const abortController = new AbortController();
 
 setTimeout(() => {
-  console.log("timeouted!!");
+  console.log("60 seconds passed and the server was killed.");
   abortController.abort();
 }, 60 * 1000);
 
