@@ -14,6 +14,6 @@ jobs:
       - name: Use Deno
         uses: denoland/setup-deno@v1
         with:
-          deno-version: v1.x
+          deno-version: canary
       - name: 😎 Test
-        run: deno run ./serve.ts
+        run: deno run --unstable -A ./serve.ts
