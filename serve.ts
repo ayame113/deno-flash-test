@@ -1,9 +1,10 @@
 const abortController = new AbortController();
 
-setTimeout(() => {
+const timeoutId = setTimeout(() => {
   console.log("60 seconds passed and the server was killed.");
   abortController.abort();
 }, 60 * 1000);
+Deno.unrefTimer(timeoutId);
 
 Deno.serve({
   fetch() {
@@ -12,8 +13,10 @@ Deno.serve({
   async onListen() {
     const res1 = await fetch("http://localhost:9000/1");
     console.log("res1: ", await res1.text());
+
     const res2 = await fetch("http://localhost:9000/2");
     console.log("res2: ", await res2.text());
+
     abortController.abort();
   },
   signal: abortController.signal,
