@@ -1,4 +1,10 @@
 const abortController = new AbortController();
+
+setTimeout(() => {
+  console.log("timeouted!!");
+  abortController.abort();
+}, 60 * 1000);
+
 Deno.serve({
   fetch() {
     return new Response("hello world");
