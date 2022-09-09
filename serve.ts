@@ -6,10 +6,7 @@ const timeoutId = setTimeout(() => {
 }, 60 * 1000);
 Deno.unrefTimer(timeoutId);
 
-Deno.serve({
-  fetch() {
-    return new Response("hello world");
-  },
+Deno.serve(() => new Response("hello world"), {
   async onListen() {
     const res1 = await fetch("http://localhost:9000/1");
     console.log("res1: ", await res1.text());
